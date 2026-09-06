@@ -92,6 +92,8 @@ The three-request default suits small experiments. Larger documents may exceed i
 
 ### Configuration
 
+Environment variables beginning with `PPV_` retain their internal code names for compatibility. They configure structured item-data extraction; see the [glossary](glossary.md).
+
 | Variable | Default | Purpose |
 | --- | --- | --- |
 | `ENABLE_LLM_CALLS` | `false` | Allow uncached model requests. |

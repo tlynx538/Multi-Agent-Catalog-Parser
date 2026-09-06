@@ -33,7 +33,9 @@ Keep your application's tenant, source-organization, and job identifiers in its 
 
 ## 2. Map results into PIM review candidates
 
-Read `ppv_results` and preserve the source evidence, document/chunk references, and warnings alongside each candidate. Define an explicit mapping from the extraction schema into your PIM's product, variant, offer, and packaging fields.
+Read `ppv_results` (the internal name for extracted item data; see the [glossary](glossary.md)) and preserve the source evidence, document/chunk references, and warnings alongside each candidate. Define an explicit mapping from the extraction schema into your PIM's product, variant, offer, and packaging fields.
+
+Keep quoted prices, MOQ, and purchasing terms associated with the applicable supplier or commercial offer. Keep product dimensions separate from carton dimensions; preserve the packaging level described in the source.
 
 Use your source-organization identifier plus source SKU and variant to identify products where those fields are reliable. Keep document identity separately for provenance and import deduplication; it changes when the PDF content changes. Route records without a reliable identity to review. Preserve nulls and apply any unit or currency normalization in a separate, traceable step.
 
@@ -87,7 +89,7 @@ flowchart TD
     Load --> Corrections{"Corrected product records supplied?"}
     Corrections -->|No| Wait["awaiting_supplier_data"]
     Corrections -->|Yes| Apply["Apply corrected records<br/>and optional corrected source text"]
-    Apply --> Validate["Run PPV validation"]
+    Apply --> Validate["Validate extracted item data"]
     Validate --> Decision{"Validation passed?"}
     Decision -->|No| Backlog["Write rejection reasons to local backlog<br/>ppv_rejected_to_backlog"]
     Decision -->|Yes| Ready["awaiting_pim_ppv_review"]
