@@ -1,4 +1,4 @@
-# Product Catalog Onboarding
+# Agentic Brochure Parser
 
 Turn product catalogs and brochures into structured product, purchasing, and packaging records for your database, PIM, or ERP.
 
